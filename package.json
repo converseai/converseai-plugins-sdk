@@ -1,0 +1,11 @@
+{
+  "name": "converseai-plugins-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "plugins-sdk.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "ConverseAI",
+  "license": "MIT"
+}

@@ -1,1 +1,1 @@
-# converseai-plugins-sdk
+NodeJS module for Converse Plugins SDK
