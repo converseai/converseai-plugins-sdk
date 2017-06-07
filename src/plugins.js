@@ -110,7 +110,7 @@ module.exports = class {
   */
   _doOrReply(f, ...args) {
     if (f) {
-      f(...args);
+      f(this, ...args);
     } else {
       this.send(Status.SUCCESS);
     }
@@ -122,7 +122,7 @@ module.exports = class {
   */
   _handleModules(body) {
     if (body && body.payload && body.payload.moduleId && this._modules[body.payload.moduleId]) {
-      this._modules[body.payload.moduleId](body);
+      this._modules[body.payload.moduleId](this, body);
     } else {
       this._handleError(404, 'MODULE_NOT_FOUND', 'Module ID not found.');
     }
