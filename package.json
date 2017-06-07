@@ -2,10 +2,14 @@
   "name": "converseai-plugins-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "plugins-sdk.js",
+  "main": "src/plugins-sdk.js",
   "scripts": {
     "test": "test"
   },
   "author": "ConverseAI",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.6.8",
+    "lodash": "^4.17.4"
+  }
 }
