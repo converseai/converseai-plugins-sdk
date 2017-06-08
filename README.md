@@ -33,7 +33,7 @@ express.use(bodyParser.json());
 var delayModule = function(app, body) {
   setTimeout(function() {
     app.send(Status.SUCCESS);
-  }, body.payload.modulePram.delayTime || 1000);
+  }, body.payload.moduleParam.delayTime || 1000);
 }
 
 express.post('/', function (request, response) {
