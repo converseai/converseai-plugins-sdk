@@ -7,6 +7,7 @@
  *
  */
 
+const _     = require('lodash');
 const Debug = require('debug');
 const debug = Debug('converseai-plugins-sdk:plugins:debug');
 const error = Debug('converseai-plugins-sdk:plugins:error');
@@ -68,12 +69,20 @@ module.exports = class {
   */
   handleRequest() {
     debug(this._body);
-    if (!this._body.event) {
+
+    console.debug(this._body);
+    if (this._body === undefined) {
+      this._handleError(404, 'BODY_CAN_NOT_BE_EMPTY', 'Body can NOT be empty.');
+      return;
+    }
+
+    if (this._body.event === undefined) {
       this._handleError(404, 'EVENT_CAN_NOT_BE_EMPTY', 'Event can NOT be empty.');
       return;
     }
 
-    switch (this._body.event) {
+    try {
+      switch (this._body.event) {
       case 'PLUGIN_REGISTER':
         this._doOrReply(this._onProviderRegister, this._body);
         break;
@@ -88,7 +97,11 @@ module.exports = class {
         break;
       case 'TRIGGER_EXEC':
       default:
-      this._handleError(404, 'EVENT_NOT_FOUND', 'Event not found.');
+        this._handleError(404, 'EVENT_NOT_FOUND', 'Event not found.');
+      }
+    } catch (e) {
+      console.error(e);
+      this._handleError(500, 'NODE_CRASHED', JSON.stringify(e));
     }
   }
 
@@ -99,6 +112,7 @@ module.exports = class {
   */
   send(status, payload) {
     var response = new Response(status, payload);
+    console.log(response);
     debug('send: ', response);
     this._handleResponse(response);
   }
@@ -121,7 +135,7 @@ module.exports = class {
   * @private
   */
   _handleModules(body) {
-    if (body && body.payload && body.payload.moduleId && this._modules[body.payload.moduleId]) {
+    if (body && body.payload && body.payload.moduleId && this._modules[body.payload.moduleId] && _.isFunction(this._modules[body.payload.moduleId])) {
       this._modules[body.payload.moduleId](this, body);
     } else {
       this._handleError(404, 'MODULE_NOT_FOUND', 'Module ID not found.');

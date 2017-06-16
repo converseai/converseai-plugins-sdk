@@ -14,12 +14,13 @@ module.exports = (function() {
 
     /**
     * Sets the error for the payload.
-    * @param {Number} httpStatus The HTTP status code for the response.
-    * @param {String} code The programmable error code for the response.
-    * @param {String} description The human readable error code for the response.
+    * @param {Object} Error object for the response.
+    * @param {Number} Error.httpStatus The HTTP status code for the response.
+    * @param {String} Error.code The programmable error code for the response.
+    * @param {String} Error.description The human readable error code for the response.
     * @public
     */
-    setError(httpStatus, code, description) {
+    setError({httpStatus, code, description}) {
       this.error = {
         httpStatus: httpStatus,
         code: code,

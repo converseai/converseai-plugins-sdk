@@ -55,7 +55,7 @@ module.exports = class extends Plugins {
   * @protected
   */
   _handleError(httpStatus, code, description) {
-    var payload = new Payload(); payload.setError(httpStatus, code, description);
+    var payload = new Payload(); payload.setError({httpStatus, code, description});
     var response = new Response(Status.FAIL, payload);
     error(response);
     this._handleResponse(response);
