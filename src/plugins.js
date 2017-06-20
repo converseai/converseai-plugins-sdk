@@ -70,7 +70,6 @@ module.exports = class {
   handleRequest() {
     debug(this._body);
 
-    console.debug(this._body);
     if (this._body === undefined) {
       this._handleError(404, 'BODY_CAN_NOT_BE_EMPTY', 'Body can NOT be empty.');
       return;
@@ -112,7 +111,6 @@ module.exports = class {
   */
   send(status, payload) {
     var response = new Response(status, payload);
-    console.log(response);
     debug('send: ', response);
     this._handleResponse(response);
   }

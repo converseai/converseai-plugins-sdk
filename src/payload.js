@@ -71,8 +71,8 @@ module.exports = (function() {
 
   return {
     Payload: Payload,
-    RegistrationDataPayload: RegistrationDataPayload,
-    ModulePayload: ModulePayload
+    RegistrationDataResponse: RegistrationDataPayload,
+    ModuleResponse: ModulePayload
   }
 
 })();
