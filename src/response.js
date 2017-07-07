@@ -12,11 +12,12 @@ const _ = require('lodash');
 module.exports = (function() {
 
   class Status {
-    static get SUCCESS  () { return 0; }
-    static get FAIL     () { return 1; }
-    static get RETRY    () { return 2; }
-    static get STOP     () { return 3; }
-    static get PAUSE    () { return 4; }
+    static get SUCCESS    () { return 0; }
+    static get FAIL       () { return 1; }
+    static get RETRY      () { return 2; }
+    static get STOP       () { return 3; }
+    static get PAUSE      () { return 4; }
+    static get NEED_AUTH  () { return 5; }
   }
 
 
