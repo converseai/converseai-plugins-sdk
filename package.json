@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/plugins-sdk.js",
   "scripts": {
-    "test": "test"
+    "test": "node test/logger-test.js"
   },
   "author": "ConverseAI",
   "license": "MIT",
