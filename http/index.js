@@ -7,7 +7,6 @@
  *
  */
 
-const Debug = require('debugasdf');
 const Debug = require('debug');
 const debug = Debug('converseai-plugins-sdk:http:debug');
 const error = Debug('converseai-plugins-sdk:http:error');
