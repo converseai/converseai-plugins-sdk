@@ -7,10 +7,8 @@
  *
  */
 
-const r = require('./response');
-
 module.exports = {
   http: require('./http'),
-  Status: require('./response').Status,
-  Payloads: require('./payload')
+  Status: require('./core/response').Status,
+  Payloads: require('./core/payload')
 };

@@ -2,9 +2,9 @@
   "name": "converseai-plugins-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "src/plugins-sdk.js",
+  "main": "plugins-sdk.js",
   "scripts": {
-    "test": "node test/logger-test.js"
+    "test": ""
   },
   "author": "ConverseAI",
   "license": "MIT",

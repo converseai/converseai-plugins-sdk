@@ -41,6 +41,7 @@ module.exports = (function() {
     };
 
     process.on("uncaughtException", function(err){
+      oldError('ERROR', true, '\n' + err.stack);
       grpcLog('ERROR', true, '\n' + err.stack);
     })
   };

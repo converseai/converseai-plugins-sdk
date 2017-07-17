@@ -7,6 +7,7 @@
  *
  */
 
+const Debug = require('debugasdf');
 const Debug = require('debug');
 const debug = Debug('converseai-plugins-sdk:http:debug');
 const error = Debug('converseai-plugins-sdk:http:error');
@@ -16,10 +17,10 @@ const RESPONSE_CODE_OK          = 200;
 const HTTP_CONTENT_TYPE_HEADER  = 'Content-Type';
 const HTTP_CONTENT_TYPE_JSON    = 'application/json';
 
-const Plugins   = require('./plugins');
-const Response  = require('./response').Response;
-const Status    = require('./response').Status;
-const Payload   = require('./payload').Payload;
+const Plugins   = require('../core/plugins');
+const Response  = require('../core/response').Response;
+const Status    = require('../core/response').Status;
+const Payload   = require('../core/payload').Payload;
 
 /**
 * @param {Object} options JSON configuration.
