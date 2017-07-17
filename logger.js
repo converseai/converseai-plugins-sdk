@@ -4,7 +4,7 @@ module.exports = (function() {
     var oldLog    = console.log;
     var oldError  = console.error;
 
-    function grpcLog(type, ...args) {
+    function grpcLog(type, exitOnReturn = false, ...args) {
       if (client !== undefined && client !== null) {
         try {
           client.addLog({
@@ -18,6 +18,9 @@ module.exports = (function() {
             if (error) {
               console.warn('GRPC client error.', error);
             }
+            if (exitOnReturn) {
+              process.exit(1);
+            }
           });
         } catch (e) {
           oldError(e);
@@ -29,12 +32,16 @@ module.exports = (function() {
 
     console.log = function(...args) {
       oldLog(...args);
-      grpcLog('INFO', ...args);
+      grpcLog('INFO', false, ...args);
     };
 
     console.error = function(...args) {
       oldError(...args);
-      grpcLog('ERROR', ...args);
+      grpcLog('ERROR', false, ...args);
     };
+
+    process.on("uncaughtException", function(err){
+      grpcLog('ERROR', true, '\n' + err.stack);
+    })
   };
 })();
