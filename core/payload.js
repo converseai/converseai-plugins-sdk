@@ -81,7 +81,7 @@ module.exports = (function() {
     * @public
     */
     setHTTPStatus(httpStatus) {
-      if (httpStatus !== undefined && body !== null) {
+      if (httpStatus !== undefined && httpStatus !== null) {
         this.externalCallReturn = this.externalCallReturn || {};
         this.externalCallReturn.httpStatus = httpStatus;
       }
@@ -111,7 +111,7 @@ module.exports = (function() {
     * @public
     */
     setHeaders(headers) {
-      if (headers !== undefined && body !== null) {
+      if (headers !== undefined && headers !== null) {
         this.externalCallReturn = this.externalCallReturn || {};
         this.externalCallReturn.headers = headers;
       }
