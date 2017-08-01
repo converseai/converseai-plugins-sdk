@@ -81,18 +81,27 @@ module.exports = (function() {
     * @public
     */
     setHTTPStatus(httpStatus) {
-      this.externalCallReturn = this.externalCallReturn || {};
-      this.externalCallReturn.httpStatus = httpStatus;
+      if (httpStatus !== undefined) {
+        this.externalCallReturn = this.externalCallReturn || {};
+        this.externalCallReturn.httpStatus = httpStatus;
+      }
     }
 
     /**
     * Sets the HTTP body to return.
-    * @param {String} body The http body.
+    * @param {Object} body The http body.
     * @public
     */
     setBody(body) {
-      this.externalCallReturn = this.externalCallReturn || {};
-      this.externalCallReturn.body = body;
+      if (body !== undefined) {
+        this.externalCallReturn = this.externalCallReturn || {};
+
+        if (typeof body === 'string') {
+          this.externalCallReturn.body = body;
+        } else {
+          this.externalCallReturn.body = JSON.stringify(body);
+        }
+      }
     }
 
     /**
@@ -102,8 +111,10 @@ module.exports = (function() {
     * @public
     */
     setHeaders(headers) {
-      this.externalCallReturn = this.externalCallReturn || {};
-      this.externalCallReturn.headers = headers;
+      if (headers !== undefined) {
+        this.externalCallReturn = this.externalCallReturn || {};
+        this.externalCallReturn.headers = headers;
+      }
     }
 
   }
