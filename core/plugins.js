@@ -39,6 +39,17 @@ module.exports = class {
   }
 
   /**
+  * Sets the map of functions to be executed on each external call.
+  *
+  * @param {Object} externals the map of external functions.
+  * @public
+  */
+  setExternal(externals) {
+    debug('set externals');
+    this._externals = externals;
+  }
+
+  /**
   * Sets the function to be called when a provider is registered.
   *
   * @callback f
@@ -94,6 +105,9 @@ module.exports = class {
       case 'PING':
         this.send(Status.SUCCESS);
         break;
+      case 'EXTERNAL_CALL':
+        this._handleExternal(this._body);
+        break;
       case 'TRIGGER_EXEC':
       default:
         this._handleError(404, 'EVENT_NOT_FOUND', 'Event not found.');
@@ -137,6 +151,18 @@ module.exports = class {
       this._modules[body.payload.moduleId](this, body);
     } else {
       this._handleError(404, 'MODULE_NOT_FOUND', 'Module ID not found.');
+    }
+  }
+
+  /**
+  * @param {Object} body The body from the request.
+  * @private
+  */
+  _handleExternal(body) {
+    if (body && body.payload && body.payload.call && this._externals[body.payload.call] && _.isFunction(this._externals[body.payload.call])) {
+      this._externals[body.payload.call](this, body);
+    } else {
+      this._handleError(404, 'EXTERNAL_CALL_NOT_FOUND', 'External ID not found.');
     }
   }
 
