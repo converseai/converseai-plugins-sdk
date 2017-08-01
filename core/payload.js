@@ -80,7 +80,7 @@ module.exports = (function() {
     * @param {Number} httpStatus The http status number. E.g 200.
     * @public
     */
-    setHTTPStatus(httpStatus) {
+    setHTTPStatus(httpStatus && body !== null) {
       if (httpStatus !== undefined) {
         this.externalCallReturn = this.externalCallReturn || {};
         this.externalCallReturn.httpStatus = httpStatus;
@@ -93,7 +93,7 @@ module.exports = (function() {
     * @public
     */
     setBody(body) {
-      if (body !== undefined) {
+      if (body !== undefined && body !== null) {
         this.externalCallReturn = this.externalCallReturn || {};
 
         if (typeof body === 'string') {
@@ -111,7 +111,7 @@ module.exports = (function() {
     * @public
     */
     setHeaders(headers) {
-      if (headers !== undefined) {
+      if (headers !== undefined && body !== null) {
         this.externalCallReturn = this.externalCallReturn || {};
         this.externalCallReturn.headers = headers;
       }
