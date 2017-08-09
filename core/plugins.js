@@ -74,42 +74,6 @@ module.exports = class {
   }
 
   /**
-  * Sets the function to be called when the oauth process is started.
-  *
-  * @callback f
-  * @param {Object} body The request body.
-  * @public
-  */
-  setOnOAuthStart(f) {
-    debug('set onOAuthStart');
-    this._onOAuthStart = f;
-  }
-
-  /**
-  * Sets the function to be called when oauth needs to handle the oauth code.
-  *
-  * @callback f
-  * @param {Object} body The request body.
-  * @public
-  */
-  setOnOAuthHandleCode(f) {
-    debug('set onOAuthHandleCode');
-    this._onOAuthHandleCode = f;
-  }
-
-  /**
-  * Sets the function to be called when oauth needs to renew the oauth token.
-  *
-  * @callback f
-  * @param {Object} body The request body.
-  * @public
-  */
-  setOnOAuthRenewToken(f) {
-    debug('set onOAuthRenewToken');
-    this._onOAuthRenewToken = f;
-  }
-
-  /**
   * Handles the request and produces a response.
   * Should be called last after all other methods have been set.
   * @public
@@ -144,15 +108,6 @@ module.exports = class {
       case 'EXTERNAL_CALL':
         this._handleExternal(this._body);
         break;
-      case 'OAUTH2_START':
-        this._doOrReply(this._onOAuthStart, this._body);
-        break;
-      case 'OAUTH2_HANDLE_CODE':
-        this._doOrReply(this._onOAuthHandleCode, this._body);
-        break;
-      case 'OAUTH2_RENEW_TOKEN':
-        this._doOrReply(this._onOAuthRenewToken, this._body);
-        break;
       case 'TRIGGER_EXEC':
       default:
         this._handleError(404, 'EVENT_NOT_FOUND', 'Event not found.');
@@ -173,12 +128,6 @@ module.exports = class {
     debug('send: ', response);
     this._handleResponse(response);
   }
-
-  /**
-  * Returns OAuth details and will start OAuth process if necessary.
-  * @public
-  */
-  oauth() {}
 
   /**
   * @param {callback} f The function to be executed.
@@ -210,9 +159,8 @@ module.exports = class {
   * @private
   */
   _handleExternal(body) {
-    // TODO: CORRECT THIS FOR EXTERNAL FUNCTIONS
-    if (body && body.payload && body.payload.moduleId && this._externals[body.payload.moduleId] && _.isFunction(this._externals[body.payload.moduleId])) {
-      this._externals[body.payload.moduleId](this, body);
+    if (body && body.payload && body.payload.call && this._externals[body.payload.call] && _.isFunction(this._externals[body.payload.call])) {
+      this._externals[body.payload.call](this, body);
     } else {
       this._handleError(404, 'EXTERNAL_CALL_NOT_FOUND', 'External ID not found.');
     }
