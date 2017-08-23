@@ -16,10 +16,10 @@ const RESPONSE_CODE_OK          = 200;
 const HTTP_CONTENT_TYPE_HEADER  = 'Content-Type';
 const HTTP_CONTENT_TYPE_JSON    = 'application/json';
 
-const Plugins   = require('../core/plugins');
-const Response  = require('../core/response').Response;
-const Status    = require('../core/response').Status;
-const Payload   = require('../core/payload').Payload;
+const Plugins       = require('../core/plugins');
+const Response      = require('../core/response').Response;
+const Status        = require('../core/response').Status;
+const ErrorResponse = require('../core/payload').ErrorResponse;
 
 /**
 * @param {Object} options JSON configuration.
@@ -55,8 +55,7 @@ module.exports = class extends Plugins {
   * @protected
   */
   _handleError(httpStatus, code, description) {
-    var payload = new Payload(); payload.setError({httpStatus, code, description});
-    var response = new Response(Status.FAIL, payload);
+    var response = new Response(Status.FAIL, new ErrorResponse(httpStatus, code, description));
     error(response);
     this._handleResponse(response);
   }
