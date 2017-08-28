@@ -35,16 +35,25 @@ module.exports = class OAuth2HandleCodePayload extends require('../Payload') {
   }
 
   //string
+  // optional
   setGrantType(grantType) {
     this.oauth2Token.grantType = grantType;
   }
 
+  //string
+  // optional
+  setMetadata(metadata) {
+    this.oauth2Token.metadata = metadata;
+  }
+
   // url to show after succesful auth
+  // optional
   setRedirectURL(url) {
     this.redirect.redirectTo = url;
   }
 
   // message to show after succesful auth
+  // optional
   setMessage(message) {
     this.redirect.message = message;
   }
