@@ -8,48 +8,48 @@
  */
 
 module.exports = class OAuth2SetupDataPayload extends require('../Payload') {
-  constructor(setupData) {
+  constructor(oauth2Setup) {
     super();
-    this.setupData = setupData || {};
+    this.oauth2Setup = oauth2Setup || {};
   }
 
   // Client ID
   // Parameters will be discarded
   // string
   setOAuth2URI(oauth2URI) {
-    this.setupData.oauth2URI = oauth2URI;
+    this.oauth2Setup.oauth2URI = oauth2URI;
   }
 
   // Client ID
   // string
   setClientID(clientId) {
-    this.setupData.clientId = clientId;
+    this.oauth2Setup.clientId = clientId;
   }
 
   // OAuth scope
   // string
   setScope(scope) {
-    this.setupData.scope = scope;
+    this.oauth2Setup.scope = scope;
   }
 
   // OAuth state
   // not required
   // string
   setState(state) {
-    this.setupData.state = state;
+    this.oauth2Setup.state = state;
   }
 
   // User comment
   // not required
   // string
   setComment(comment) {
-    this.setupData.comment = comment;
+    this.oauth2Setup.comment = comment;
   }
 
   // GET Params on oauth url
   // not required
   // map
   setExtraParams(extraParams) {
-    this.setupData.extraParams = extraParams;
+    this.oauth2Setup.extraParams = extraParams;
   }
 }
