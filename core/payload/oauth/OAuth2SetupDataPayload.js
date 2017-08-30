@@ -13,42 +13,57 @@ module.exports = class OAuth2SetupDataPayload extends require('../Payload') {
     this.oauth2Setup = oauth2Setup || {};
   }
 
-  // Client ID
-  // Parameters will be discarded
-  // string
+  /**
+  * Sets the URI for the OAuth2 payload. Get parameters will be
+  * discarded from this string, use setExtraParams to pass parameters.
+  * @param {String} oauth2URI The OAuth2 URI for the response.
+  * @public
+  */
   setOAuth2URI(oauth2URI) {
     this.oauth2Setup.oauth2URI = oauth2URI;
   }
 
-  // Client ID
-  // string
+  /**
+  * Sets the Client ID for the OAuth2 payload.
+  * @param {String} clientId The OAuth2 Client ID for the response.
+  * @public
+  */
   setClientID(clientId) {
     this.oauth2Setup.clientId = clientId;
   }
 
-  // OAuth scope
-  // string
+  /**
+  * Sets the scope for the OAuth2 payload.
+  * @param {String} scope The OAuth2 scope for the response.
+  * @public
+  */
   setScope(scope) {
     this.oauth2Setup.scope = scope;
   }
 
-  // OAuth state
-  // not required
-  // string
+  /**
+  * Sets the state for the OAuth2 payload.
+  * @param {String} [state] The OAuth2 state for the response.
+  * @public
+  */
   setState(state) {
     this.oauth2Setup.state = state;
   }
 
-  // User comment
-  // not required
-  // string
+  /**
+  * Sets the user comment for the OAuth2 payload.
+  * @param {String} [comment] The OAuth2 user comment for the response.
+  * @public
+  */
   setComment(comment) {
     this.oauth2Setup.comment = comment;
   }
 
-  // GET Params on oauth url
-  // not required
-  // map
+  /**
+  * Sets the parameters to be attached to URL for the OAuth2 payload.
+  * @param {Object} [extraParams] The OAuth2 URL parameters for the response.
+  * @public
+  */
   setExtraParams(extraParams) {
     this.oauth2Setup.extraParams = extraParams;
   }

@@ -14,46 +14,74 @@ module.exports = class OAuth2HandleCodePayload extends require('../Payload') {
     this.redirect = redirect || {};
   }
 
-  //string
+  /**
+  * Sets the access token for the OAuth2 payload.
+  * @param {String} accessToken The OAuth2 access token for the response.
+  * @public
+  */
   setAccessToken(accessToken) {
     this.oauth2Token.accessToken = accessToken;
   }
 
-  //string
+  /**
+  * Sets the token type for the OAuth2 payload.
+  * @param {String} tokenType The OAuth2 token type for the response.
+  * @public
+  */
   setTokenType(tokenType) {
     this.oauth2Token.tokenType = tokenType;
   }
 
-  //string
+  /**
+  * Sets the refresh token for the OAuth2 payload.
+  * @param {String} refreshToken The OAuth2 refresh token for the response.
+  * @public
+  */
   setRefreshToken(refreshToken) {
     this.oauth2Token.refreshToken = refreshToken;
   }
 
-  //int
+  /**
+  * Sets the expiry time for the OAuth2 payload.
+  * @param {String} expiresIn The OAuth2 expiry time for the response.
+  * @public
+  */
   setExpiresIn(expiresIn) {
     this.oauth2Token.expiresIn = expiresIn;
   }
 
-  //string
-  // optional
+  /**
+  * Sets the expiry time for the OAuth2 payload.
+  * @param {String} expiresIn The OAuth2 expiry time for the response.
+  * @public
+  */
   setGrantType(grantType) {
     this.oauth2Token.grantType = grantType;
   }
 
-  //string
-  // optional
+  /**
+  * Sets the metadata for the OAuth2 payload.
+  * @param {Object} [metadata] A Key/Value map of metadata for the OAuth2 response.
+  * @public
+  */
   setMetadata(metadata) {
     this.oauth2Token.metadata = metadata;
   }
 
-  // url to show after succesful auth
-  // optional
+  /**
+  * Sets the redirect URL for the OAuth2 payload.
+  * @param {String} [url] An OAuth2 redirect URL for the response.
+  * @public
+  */
   setRedirectURL(url) {
     this.redirect.redirectTo = url;
   }
 
-  // message to show after succesful auth
-  // optional
+  /**
+  * Sets the success message for the OAuth2 payload.
+  * @param {String} [message] An OAuth2 success message for the response.
+  * @public
+  */
   setMessage(message) {
     this.redirect.message = message;
   }
