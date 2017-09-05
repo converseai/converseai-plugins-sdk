@@ -16,47 +16,47 @@ module.exports = class OAuth2HandleCodePayload extends require('../Payload') {
 
   /**
   * Sets the access token for the OAuth2 payload.
-  * @param {String} accessToken The OAuth2 access token for the response.
+  * @param {String} access_token The OAuth2 access token for the response.
   * @public
   */
-  setAccessToken(accessToken) {
-    this.oauth2Token.accessToken = accessToken;
+  setAccessToken(access_token) {
+    this.oauth2Token.access_token = access_token;
   }
 
   /**
   * Sets the token type for the OAuth2 payload.
-  * @param {String} tokenType The OAuth2 token type for the response.
+  * @param {String} token_type The OAuth2 token type for the response.
   * @public
   */
-  setTokenType(tokenType) {
-    this.oauth2Token.tokenType = tokenType;
+  setTokenType(token_type) {
+    this.oauth2Token.token_type = token_type;
   }
 
   /**
   * Sets the refresh token for the OAuth2 payload.
-  * @param {String} refreshToken The OAuth2 refresh token for the response.
+  * @param {String} refresh_token The OAuth2 refresh token for the response.
   * @public
   */
-  setRefreshToken(refreshToken) {
-    this.oauth2Token.refreshToken = refreshToken;
+  setRefreshToken(refresh_token) {
+    this.oauth2Token.refresh_token = refresh_token;
   }
 
   /**
   * Sets the expiry time for the OAuth2 payload.
-  * @param {String} expiresIn The OAuth2 expiry time for the response.
+  * @param {String} expires_in The OAuth2 expiry time for the response.
   * @public
   */
-  setExpiresIn(expiresIn) {
-    this.oauth2Token.expiresIn = expiresIn;
+  setExpiresIn(expires_in) {
+    this.oauth2Token.expires_in = expires_in;
   }
 
   /**
   * Sets the expiry time for the OAuth2 payload.
-  * @param {String} expiresIn The OAuth2 expiry time for the response.
+  * @param {String} grant_type The OAuth2 expiry time for the response.
   * @public
   */
-  setGrantType(grantType) {
-    this.oauth2Token.grantType = grantType;
+  setGrantType(grant_type) {
+    this.oauth2Token.grant_type = grant_type;
   }
 
   /**
