@@ -10,7 +10,9 @@
 const _     = require('lodash');
 const Debug = require('debug');
 const debug = Debug('converseai-plugins-sdk:plugins:debug');
-const error = Debug('converseai-plugins-sdk:plugins:error');
+const error = console.error.bind(console);
+debug.log   = console.log.bind(console);
+
 
 const Response  = require('./response').Response;
 const Status    = require('./response').Status;
@@ -110,6 +112,37 @@ module.exports = class {
   }
 
   /**
+  * Gets the plugin level OAuth2 access_token created on registration time.
+  * @returns {string} a OAuth2 access_token.
+  * @public
+  */
+  getAccessTokenForPlugin() {
+    debug('getPluginAccessToken');
+    if (this._body && this._body.payload && this._body.payload.providerOAuth && this._body.payload.providerOAuth.access_token) {
+      return this._body.payload.providerOAuth.access_token;
+    }
+    this._handleError(401, 'ACCESS_TOKEN_UNDEFINED', 'providerOAuth.access_token is undefined.');
+  }
+
+  /**
+  * Gets the plugin level OAuth2 access_token created on registration time. If
+  * the access_token is undefined then this method will send `NEED_AUTH` to the
+  * Converse.AI platform and return `undefined`. At this point you should break
+  * out of your module code and wait for Converse.AI to retrigger the module
+  * with a new access_token.
+  * @returns {string} a OAuth2 access_token or undefined.
+  * @public
+  */
+  getAccessTokenForUser() {
+    debug('getPluginAccessToken');
+    if (this._body && this._body.payload && this._body.payload.invokerOAuth && this._body.payload.invokerOAuth.access_token) {
+      return this._body.payload.invokerOAuth.access_token;
+    } else {
+      this.send(Status.NEED_AUTH);
+    }
+  }
+
+  /**
   * Handles the request and produces a response.
   * Should be called last after all other methods have been set.
   * @public
@@ -158,7 +191,8 @@ module.exports = class {
         this._handleError(404, 'EVENT_NOT_FOUND', 'Event not found.');
       }
     } catch (e) {
-      this._handleError(500, 'NODE_CRASHED', JSON.stringify(e));
+      error(e);
+      this._handleError(500, 'NODE_CRASHED', JSON.stringify(e, Object.getOwnPropertyNames(e)));
     }
   }
 
@@ -171,6 +205,17 @@ module.exports = class {
     var response = new Response(status, payload);
     debug('send: ', response);
     this._handleResponse(response);
+  }
+
+  /**
+  * @param {Object} [error] The error object.
+  * @param {string} error.httpStatus - The HTTP Status of the error. E.g 500
+  * @param {string} error.code - The machine readable error code.
+  * @param {string} error.description - The human readable description.
+  * @public
+  */
+  fail({httpStatus, code, description}) {
+    this._handleError(httpStatus, code, description);
   }
 
   /**
