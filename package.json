@@ -1,6 +1,6 @@
 {
   "name": "@converseai/plugins-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This library makes it easy to create your own plugins and modules for the Converse AI platform.",
   "main": "plugins-sdk.js",
   "repository": {
