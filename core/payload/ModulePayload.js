@@ -29,4 +29,14 @@ module.exports = class ModulePayload extends require('./Payload') {
   setValue(value) {
     this.value = value;
   }
+
+  /**
+  * Sets the exit value for the payload. This should be used in conjunction with the "exits"
+  * property of the module in plugin.json.
+  * @param {String} value The exit string of the module that defines which specified exit should be followed.
+  * @public
+  */
+  setExit(value) {
+    this.exit = value;
+  }
 }
