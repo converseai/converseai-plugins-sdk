@@ -7,7 +7,7 @@
  *
  */
 
-module.exports = class AsyncChannelOutput extends require('../Abstract/ChannelOutput.js') {
+module.exports = class AsyncChannelOutput extends require('../abstract/ChannelOutput.js') {
   constructor(message, settings) {
     super(message, settings);
     this.setSync(false);

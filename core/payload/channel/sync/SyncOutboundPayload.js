@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
- module.exports = class SyncOutboundPayload extends require('../HTTPResponsePayload')(require('../Abstract/OutboundPayload')) {
+ module.exports = class SyncOutboundPayload extends require('../HTTPResponsePayload')(require('../abstract/OutboundPayload')) {
    constructor(httpStatus) {
      super(httpStatus);
    }

@@ -7,7 +7,7 @@
  *
  */
 
-module.exports = class SyncChannelOutput extends require('../Abstract/ChannelOutput.js') {
+module.exports = class SyncChannelOutput extends require('../abstract/ChannelOutput.js') {
   constructor(message, settings) {
     super(message, settings);
     this.setSync(true);

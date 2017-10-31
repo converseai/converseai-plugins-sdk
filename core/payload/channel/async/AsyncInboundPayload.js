@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-module.exports = class AsyncInboundPayload extends require('../HTTPResponsePayload')(require('../Abstract/InboundPayload')) {
+module.exports = class AsyncInboundPayload extends require('../HTTPResponsePayload')(require('../abstract/InboundPayload')) {
   constructor(httpStatus) {
     super(httpStatus);
   }

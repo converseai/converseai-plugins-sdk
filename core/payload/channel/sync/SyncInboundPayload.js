@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
- module.exports = class SyncInboundPayload extends require('../Abstract/InboundPayload') {
+ module.exports = class SyncInboundPayload extends require('../abstract/InboundPayload') {
    constructor() {
      super();
    }
