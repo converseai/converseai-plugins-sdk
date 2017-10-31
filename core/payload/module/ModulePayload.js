@@ -7,14 +7,24 @@
  *
  */
 
-module.exports = class ModulePayload extends require('./Payload') {
+class ModulePayload extends require('../Payload') {
   constructor() {
     super();
   }
 
   /**
+  * Sets the message for the payload.
+  * @param {ModuleMessage} message The ModuleMessage object to be set on the payload.
+  * @public
+  */
+  setMessage(message) {
+    this.moduleMessage = message;
+  }
+
+  /**
   * Sets the comment for the payload.
   * @param {String[]} comment The comment array for the module response.
+  * @@deprecated since 1.0.5 – please use `setMessage(...)`.
   * @public
   */
   setComment(comment) {

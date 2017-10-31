@@ -7,10 +7,11 @@
  *
  */
 
-module.exports = class ExternalFunctionPayload extends require('./Payload') {
-  constructor(httpStatus) {
-    super();
-    this.externalCallReturn = httpStatus || new require('./shared/HttpStatus');
+module.exports = class HTTPStatus {
+  constructor({httpStatus, body, headers} = {}) {
+    this.setHTTPStatus(httpStatus);
+    this.setBody(body);
+    this.setHeaders(headers);
   }
 
   /**
@@ -20,8 +21,7 @@ module.exports = class ExternalFunctionPayload extends require('./Payload') {
   */
   setHTTPStatus(httpStatus) {
     if (httpStatus !== undefined && httpStatus !== null) {
-      this.externalCallReturn = this.externalCallReturn || {};
-      this.externalCallReturn.setHTTPStatus(httpStatus);
+      this.httpStatus = httpStatus;
     }
   }
 
@@ -32,12 +32,10 @@ module.exports = class ExternalFunctionPayload extends require('./Payload') {
   */
   setBody(body) {
     if (body !== undefined && body !== null) {
-      this.externalCallReturn = this.externalCallReturn || {};
-
       if (typeof body === 'string') {
-        this.externalCallReturn.setBody(body);
+        this.body = body;
       } else {
-        this.externalCallReturn.setBody(JSON.stringify(body));
+        this.body = JSON.stringify(body);
       }
     }
   }
@@ -50,8 +48,7 @@ module.exports = class ExternalFunctionPayload extends require('./Payload') {
   */
   setHeaders(headers) {
     if (headers !== undefined && headers !== null) {
-      this.externalCallReturn = this.externalCallReturn || {};
-      this.externalCallReturn.setHeaders(headers);
+      this.headers = headers;
     }
   }
 

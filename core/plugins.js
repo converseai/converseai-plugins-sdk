@@ -17,7 +17,6 @@ debug.log   = console.log.bind(console);
 const Response  = require('./response').Response;
 const Status    = require('./response').Status;
 
-
 /**
 * Constructor for the Plugins class.
 * @public
@@ -49,6 +48,30 @@ module.exports = class {
   setExternal(externals) {
     debug('set externals');
     this._externals = externals;
+  }
+
+  /**
+  * Sets the function to be called when an inbound messaged is handled.
+  *
+  * @callback f
+  * @param {Object} body The request body.
+  * @public
+  */
+  setOnMessageInbound(inbound) {
+    debug('set onMessageInbound');
+    this._onMessageInbound = inbound;
+  }
+
+  /**
+  * Sets the function to be called when an outbound messaged is handled.
+  *
+  * @callback f
+  * @param {Object} body The request body.
+  * @public
+  */
+  setOnMessageOutbound(outbound) {
+    debug('set onMessageOutbound');
+    this._onMessageOutbound = outbound;
   }
 
   /**
@@ -167,6 +190,12 @@ module.exports = class {
         break;
       case 'PLUGIN_UNREGISTER':
         this._doOrReply(this._onProviderUnregister, this._body);
+        break;
+      case 'MESSAGE_INBOUND':
+        this._doOrReply(this._onMessageInbound, this._body);
+        break;
+      case 'MESSAGE_OUTBOUND':
+        this._doOrReply(this._onMessageOutbound, this._body);
         break;
       case 'MODULE_EXEC':
         this._handleModules(this._body);
