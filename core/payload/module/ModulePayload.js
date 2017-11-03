@@ -7,7 +7,7 @@
  *
  */
 
-class ModulePayload extends require('../Payload') {
+module.exports = class ModulePayload extends require('../Payload') {
   constructor() {
     super();
   }
