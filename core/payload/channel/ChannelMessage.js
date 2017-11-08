@@ -25,7 +25,7 @@ class ChannelMessageText extends ChannelMessage {
 class ChannelMessageMedia extends ChannelMessage {
   constructor(media) {
     super();
-    this.media = media;
+    this.media = media || {};
   }
 
   setType(type) {
@@ -40,7 +40,7 @@ class ChannelMessageMedia extends ChannelMessage {
 class ChannelMessageConversation extends ChannelMessage {
   constructor(conversation) {
     super();
-    this.conversation = conversation;
+    this.conversation = conversation || {};
   }
 
   setIntent(intent, isNew = false) {
