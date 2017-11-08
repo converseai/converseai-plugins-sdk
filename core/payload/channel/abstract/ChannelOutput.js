@@ -10,7 +10,7 @@
 module.exports = class ChannelOutput {
   constructor(message, settings) {
     this.setMessage(message);
-    this.channelSettings = Object.assign({}, settings);
+    this.channelSetting = Object.assign({}, settings);
   }
 
   /**
@@ -23,24 +23,24 @@ module.exports = class ChannelOutput {
   }
 
   setUserId(userId) {
-    this.channelSettings.userId = userId;
+    this.channelSetting.userId = userId;
   }
   setThreadId(threadId) {
-    this.channelSettings.threadId = threadId;
+    this.channelSetting.threadId = threadId;
   }
   setData(data) {
-    this.channelSettings.data = data;
+    this.channelSetting.data = data;
   }
   setRuntimeCTX(runtimeCTX) {
-    this.channelSettings.runtimeCTX = runtimeCTX;
+    this.channelSetting.runtimeCTX = runtimeCTX;
   }
   setChannelName(channelName) {
-    this.channelSettings.channelName = channelName;
+    this.channelSetting.channelName = channelName;
   }
   setUserInfo(userInfo) {
-    this.channelSettings.userInfo = userInfo;
+    this.channelSetting.userInfo = userInfo;
   }
   setSync(sync) {
-    this.channelSettings.sync = sync
+    this.channelSetting.sync = sync
   }
 }
