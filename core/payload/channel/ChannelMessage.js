@@ -28,8 +28,12 @@ class ChannelMessageMedia extends ChannelMessage {
     this.media = media;
   }
 
-  setMedia(media) {
-    this.media = media;
+  setType(type) {
+    this.media.type = type;
+  }
+
+  setEntity(entity) {
+    this.media.entity = entity;
   }
 }
 
@@ -39,8 +43,20 @@ class ChannelMessageConversation extends ChannelMessage {
     this.conversation = conversation;
   }
 
-  setConversation(conversation) {
-    this.conversation = conversation;
+  setIntent(intent, isNew = false) {
+    if (isNew) {
+      this.conversation.new = intent;
+    } else {
+      this.conversation.existing = intent;
+    }
+  }
+
+  setEntityData(data) {
+    this.conversation.entityData = data;
+  }
+
+  setRuntimeCTX(runtimeCTX) {
+    this.conversation.runtimeCTX = runtimeCTX;
   }
 }
 
