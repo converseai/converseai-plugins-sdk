@@ -26,9 +26,9 @@ describe('Channels – Sync', function () {
     output.setData({a: 'b', c: 'd'});
 
     expect(output).has.property('channelMessage').to.equal(message);
-    expect(output).has.property('channelSettings');
-    expect(output.channelSettings).has.property('data').has.property('a').to.equal('b');
-    expect(output.channelSettings).has.property('sync').to.equal(true);
+    expect(output).has.property('channelSetting');
+    expect(output.channelSetting).has.property('data').has.property('a').to.equal('b');
+    expect(output.channelSetting).has.property('sync').to.equal(true);
 
     payload.addOutput(output);
 
@@ -61,8 +61,8 @@ describe('Channels – Sync', function () {
     });
 
     expect(output).has.property('channelMessage').has.property('text').to.equal('ABC');
-    expect(output).has.property('channelSettings').has.property('data').has.property('a').to.equal('b');
-    expect(output.channelSettings).has.property('sync').to.equal(true);
+    expect(output).has.property('channelSetting').has.property('data').has.property('a').to.equal('b');
+    expect(output.channelSetting).has.property('sync').to.equal(true);
 
     payload.addOutput(output);
 
@@ -106,9 +106,9 @@ describe('Channels – Async', function () {
     output.setData({a: 'b', c: 'd'});
 
     expect(output).has.property('channelMessage').to.equal(message);
-    expect(output).has.property('channelSettings');
-    expect(output.channelSettings).has.property('data').has.property('a').to.equal('b');
-    expect(output.channelSettings).has.property('sync').to.equal(false);
+    expect(output).has.property('channelSetting');
+    expect(output.channelSetting).has.property('data').has.property('a').to.equal('b');
+    expect(output.channelSetting).has.property('sync').to.equal(false);
 
     payload.addOutput(output);
 
@@ -134,9 +134,9 @@ describe('Channels – Async', function () {
     });
 
     expect(output).has.property('channelMessage').has.property('text').to.equal('ABC');
-    expect(output).has.property('channelSettings');
-    expect(output.channelSettings).has.property('data').has.property('a').to.equal('b');
-    expect(output.channelSettings).has.property('sync').to.equal(false);
+    expect(output).has.property('channelSetting');
+    expect(output.channelSetting).has.property('data').has.property('a').to.equal('b');
+    expect(output.channelSetting).has.property('sync').to.equal(false);
 
 
     payload.addOutput(output);

@@ -11,11 +11,21 @@ module.exports = class InboundPayload extends require('../../Payload') {
 
   /**
   * Adds a channelOutput for the payload.
-  * @param {ChannelOutput} channelOutput The ChannelOutput object to be added on the payload.
+  * @param {ConverseInput} channelOutput The ConverseInput object to be added on the payload.
+  * @deprecated
   * @public
   */
   addOutput(channelOutput) {
+    this.addConverseInput(channelOutput);
+  }
+
+  /**
+  * Adds a converseInput for the payload.
+  * @param {ConverseInput} channelInput The ConverseInput object to be added on the payload.
+  * @public
+  */
+  addConverseInput(converseInput) {
     this.channelOutput = this.channelOutput || [];
-    this.channelOutput.push(channelOutput);
+    this.channelOutput.push(converseInput);
   }
 }

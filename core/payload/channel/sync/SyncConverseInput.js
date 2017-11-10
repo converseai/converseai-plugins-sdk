@@ -7,9 +7,9 @@
  *
  */
 
-module.exports = class AsyncChannelOutput extends require('../abstract/ChannelOutput.js') {
+module.exports = class SyncChannelOutput extends require('../abstract/ConverseInput.js') {
   constructor(message, settings) {
     super(message, settings);
-    this.setSync(false);
+    this.setSync(true);
   }
 }
