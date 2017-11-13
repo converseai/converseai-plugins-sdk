@@ -73,6 +73,9 @@ describe('Channels – Sync', function () {
     const Sync = Channel.Sync;
     var payload = new Sync.OutboundResponse({httpStatus: 200, body: 'ABC', 'headers': {a: 'b'}});
 
+    payload.setChannelSetting({});
+
+    expect(payload).has.property('channelSetting');
     expect(payload).has.property('httpResponse');
     expect(payload.httpResponse).has.property('httpStatus').to.equal(200);
     expect(payload.httpResponse).has.property('body').to.equal('ABC');

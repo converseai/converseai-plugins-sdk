@@ -8,4 +8,9 @@
  */
 
 module.exports = class OutboundPayload extends require('../../Payload') {
+
+  setChannelSetting(channelSetting) {
+    this.channelSetting = channelSetting;
+  }
+
 }
