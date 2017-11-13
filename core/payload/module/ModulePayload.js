@@ -6,6 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+const _     = require('lodash');
+const Text  = new require('./ModuleMessageText');
 
 module.exports = class ModulePayload extends require('../Payload') {
   constructor() {
@@ -18,6 +20,9 @@ module.exports = class ModulePayload extends require('../Payload') {
   * @public
   */
   setMessage(message) {
+    if (_.isString(message)) {
+      message = new Text(message, Text.TYPE_COMMENT);
+    }
     this.moduleMessage = message;
   }
 
