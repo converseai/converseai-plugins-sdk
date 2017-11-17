@@ -7,10 +7,12 @@
  *
  */
 
+const HTTPResponse = require('./shared/HTTPResponse');
+
 module.exports = class ExternalFunctionPayload extends require('./Payload') {
   constructor(httpStatus) {
     super();
-    this.externalCallReturn = httpStatus || new require('./shared/HttpStatus');
+    this.externalCallReturn = httpStatus || new HTTPResponse();
   }
 
   /**
