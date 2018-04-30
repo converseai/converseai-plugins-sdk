@@ -14,10 +14,10 @@ module.exports = class ChannelOutput {
   }
 
   /**
-  * Sets the message for the output.
-  * @param {ChannelMessage} channelMessage The ChannelMessage object to be set on the output.
-  * @public
-  */
+   * Sets the message for the output.
+   * @param {ChannelMessage} channelMessage The ChannelMessage object to be set on the output.
+   * @public
+   */
   setMessage(channelMessage) {
     this.channelMessage = channelMessage;
   }
@@ -41,6 +41,18 @@ module.exports = class ChannelOutput {
     this.channelSetting.userInfo = userInfo;
   }
   setSync(sync) {
-    this.channelSetting.sync = sync
+    this.channelSetting.sync = sync;
   }
+  /**
+   * Sets if the channel settings belong to a group chat with multiple users
+   * 
+   * In a group chat any user can contribute to the same conversation as if they
+   * are a single user but can be indentified separately 
+   * @param {boolean} isGroup Should be `true` if part of a group chat; otherwise `false`.
+   * @public
+   */
+  setIsGroup(isGroup) {
+    this.channelSetting.isGroup = isGroup;
+  }
+
 }
