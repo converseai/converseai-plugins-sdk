@@ -8,7 +8,11 @@
  */
 
 class ChannelMessage {
-  constructor() {}
+  constructor() { }
+
+  setUID(uid) {
+    this.uid = uid;
+  }
 }
 
 class ChannelMessageText extends ChannelMessage {
